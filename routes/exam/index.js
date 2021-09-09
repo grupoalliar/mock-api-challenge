@@ -48,7 +48,7 @@ module.exports = async (fastify, opts) => {
           data: {
             type: 'object',
             required: ['name', 'type'],
-            additionalProperties: true,
+            additionalProperties: false,
             properties: {
               name: {type:'string'},
               type: {
@@ -70,18 +70,6 @@ module.exports = async (fastify, opts) => {
     reply.code(201)
     return { id }
   })
-
-  // fastify.post('/:id/update', async (request, reply) => {
-  //   const { id } = request.params
-  //   const { data } = request.body
-  //   try {
-  //     await update(id, data)
-  //     reply.code(204)
-  //   } catch (err) {
-  //     if (err.message === 'not found') throw notFound()
-  //     throw err
-  //   }
-  // })
 
   fastify.get('/:id', async (request, reply) => {
     const { id } = request.params
